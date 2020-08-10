@@ -6,6 +6,7 @@
 // 10/8/2020
 // Remove grey balloon and create simple movement(hardcode)
 // Build class for stop balloon condition
+// Add random color function
 
 class Balloon
 {
@@ -25,7 +26,7 @@ class Balloon
   }
   void blowBalloon()
   {
-    fill(255);
+    //fill(255);
     ellipse(this.pntX, this.pntY, this.width, this.height);
     line(this.pntX, this.pntY+(height/2), this.pntX,                   
       this.pntY+(height/2)+(this.height*2));
@@ -48,6 +49,14 @@ class Balloon
     }
     blowBalloon();
   }
+  
+  void fillColor()
+  {
+    float redTone = random(0, 255);
+    float greenTone = random(0, 255);
+    float blueTone = random(0, 255);
+    fill(redTone, greenTone, blueTone);
+  }
 }
 
 Balloon firstballoon;
@@ -56,6 +65,7 @@ void setup()
 {
   size(1000, 800);
   firstballoon = new Balloon(400, 400, 200, 200);
+  firstballoon.fillColor();
 }
 
 void draw()

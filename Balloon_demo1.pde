@@ -7,6 +7,7 @@
 // Remove grey balloon and create simple movement(hardcode)
 // Build class for stop balloon condition
 // Add random color function
+// Add more balloon
 
 class Balloon
 {
@@ -59,17 +60,23 @@ class Balloon
   }
 }
 
-Balloon firstballoon;
+Balloon firstballoon, secondballoon, thirdballoon;
 
 void setup()
 {
   size(1000, 800);
   firstballoon = new Balloon(400, 400, 200, 200);
   firstballoon.fillColor();
+  secondballoon = new Balloon(800, 500, 150, 150);
+  secondballoon.fillColor();
+  thirdballoon = new Balloon(500, 600, 250, 250);
+  thirdballoon.fillColor();
 }
 
 void draw()
 {
-  background(190);
+  background(255);
   firstballoon.riseUp();
+  secondballoon.riseUp();
+  thirdballoon.riseUp();
 }

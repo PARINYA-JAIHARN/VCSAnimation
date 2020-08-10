@@ -5,26 +5,61 @@
 
 // 10/8/2020
 // Remove grey balloon and create simple movement(hardcode)
+// Build class for stop balloon condition
 
-int i = 800;
+class Balloon
+{
+  float pntX;
+  float pntY;
+  float baseY;
+  float width;
+  float height;
+
+  Balloon(float o_pntX, float o_pntY, float o_width, float o_height)
+  {
+    this.pntX = o_pntX;
+    this.pntY = o_pntY;
+    this.baseY = o_pntY;
+    this.width = o_width;
+    this.height = o_height;
+  }
+  void blowBalloon()
+  {
+    fill(255);
+    ellipse(this.pntX, this.pntY, this.width, this.height);
+    line(this.pntX, this.pntY+(height/2), this.pntX,                   
+      this.pntY+(height/2)+(this.height*2));
+  }
+
+  void riseUp()
+  {
+    if (mousePressed)
+    {
+      this.pntY = this.pntY + 1;
+    }
+    if (this.pntY - (this.height/2) > 0)
+    {
+      delay(1);
+      this.pntY = this.pntY - 1;
+    }
+    if (this.pntY - (this.height/2) == 0 && mousePressed)
+    {
+      this.pntY = this.baseY+(this.height/2);
+    }
+    blowBalloon();
+  }
+}
+
+Balloon firstballoon;
+
 void setup()
 {
   size(1000, 800);
-  fill(255);
+  firstballoon = new Balloon(400, 400, 200, 200);
 }
 
 void draw()
 {
   background(190);
-  blowBalloon(400, i, 200, 200);
-  delay(1);
-  i = i - 1;
-  redraw();
-}
-
-void blowBalloon(int pntX, int pntY, int height, int width)
-{
-  fill(255);
-  ellipse(pntX, pntY, width, height);
-  line(pntX, pntY+(height/2), pntX, pntY+(height/2)+(height*2));
+  firstballoon.riseUp();
 }
